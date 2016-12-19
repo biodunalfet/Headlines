@@ -1,11 +1,9 @@
 package com.hamza.headlines.data;
 
-import android.content.Context;
-
+import com.hamza.headlines.news.feeds.FeedResponse;
 import com.hamza.headlines.news.sources.Source;
-import com.hamza.headlines.news.sources.SourcePresenter;
-import com.hamza.headlines.news.sources.SourcesContract;
-import com.hamza.headlines.util.Strings;
+import com.hamza.headlines.util.Constants;
+import com.hamza.headlines.util.Keys;
 
 import java.util.List;
 
@@ -46,7 +44,7 @@ public class Repository {
             OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
             okHttpClientBuilder.addInterceptor(interceptor);
 
-            retrofit = new Retrofit.Builder().baseUrl(Strings.BASE_URL)
+            retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(okHttpClientBuilder.build()).build();
@@ -78,6 +76,44 @@ public class Repository {
                 });
 
         subscriptions.add(subscription);
+    }
+
+    public void getFeedResponseObservable(final GetFeedSourcesCallback callback, CompositeSubscription subscriptions,
+                                          String source, String sortBy) {
+
+        createApiService();
+
+        Observable<FeedResponse> feedResponseObservable = newsService.getFeedFromSourceWithSort(source, sortBy, Keys.API_KEY)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+        Subscription subscription = feedResponseObservable.subscribe(new Subscriber<FeedResponse>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.onError(e);
+            }
+
+            @Override
+            public void onNext(FeedResponse response) {
+                callback.onSuccess(response);
+            }
+        });
+
+        subscriptions.add(subscription);
+
+
+    }
+
+    public interface GetFeedSourcesCallback {
+
+        void onError(Throwable e);
+
+        void onSuccess(FeedResponse response);
+
     }
 
     public interface GetSourcesResponseCallback {

@@ -1,4 +1,4 @@
-package com.hamza.headlines.news.headlines;
+package com.hamza.headlines.news.feeds;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Hamza Fetuga on 12/16/2016.
  */
 
-public interface ArticleContract {
+public interface FeedContract {
 
     interface View {
 
@@ -14,9 +14,9 @@ public interface ArticleContract {
 
         void showError(String message);
 
-        void showArticles(List<Article> articles);
+        void showArticles(FeedResponse response);
 
-        void showArticle(Article article);
+        void showArticle(ArticleSummary articleSummary);
     }
 
     interface UserActionsListener {

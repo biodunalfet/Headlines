@@ -1,5 +1,7 @@
 package com.hamza.headlines.news.sources;
 
+import org.parceler.Parcel;
+
 /**
  * Created by Hamza Fetuga on 12/15/2016.
  */
@@ -22,6 +24,10 @@ public class Source {
 
     ImageUrl urlsToLogos;
 
+    public String getId() {
+        return id;
+    }
+
     String id;
 
     String description;
@@ -43,6 +49,10 @@ public class Source {
         public String small;
         public String medium;
         public String large;
+    }
+
+    public String[] getSortBysAvailable() {
+        return sortBysAvailable;
     }
 
     public String[] sortBysAvailable;

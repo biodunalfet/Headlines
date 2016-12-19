@@ -5,4 +5,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="top">Top</string>
+    <string name="latest">Latest</string>
+    <string name="popular">Popular</string>
+    <string name="placeholder_article_title">Bill Gates delivers tidings of comfort and joy as one lucky Redditor\'s Secret Santa</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.hamza.headlines.news.sources;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hamza.headlines.R;
+import com.hamza.headlines.news.NewsActivity;
+import com.hamza.headlines.news.feedSort.FeedSortFragment;
+import com.hamza.headlines.util.Constants;
 import com.hamza.headlines.util.Helpers;
 import com.squareup.picasso.Picasso;
 
@@ -61,12 +66,33 @@ public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.ViewHold
         ImageView logo_IV;
         TextView name_TV;
         TextView category_TV;
+        CardView item_root_CV;
 
         public ViewHolder(View itemView) {
             super(itemView);
             logo_IV = (ImageView) itemView.findViewById(R.id.imageView_logo);
             name_TV = (TextView) itemView.findViewById(R.id.textView_name);
             category_TV = (TextView) itemView.findViewById(R.id.textView_category);
+            item_root_CV = (CardView) itemView.findViewById(R.id.item_root);
+
+            item_root_CV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (((NewsActivity)context).findViewById(R.id.content_news) != null) {
+
+                        Source src = sources.get(getAdapterPosition());
+                        FeedSortFragment fragment = new FeedSortFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constants.SOURCE_KEY, src.getId());
+                        bundle.putStringArray(Constants.SORT_BY_KEYS_LIST, src.getSortBysAvailable());
+                        fragment.setArguments(bundle);
+                        ((NewsActivity) context).getSupportFragmentManager().beginTransaction().add(R.id.content_news,
+                                fragment ,null).addToBackStack(null).commit();
+                    }
+                }
+            });
         }
+
+
     }
 }

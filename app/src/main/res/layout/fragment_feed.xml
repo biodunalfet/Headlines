@@ -2,18 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hamza.headlines.news.sources.SourceFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="com.hamza.headlines.news.feeds.FeedFragment">
 
     <android.support.v7.widget.RecyclerView
-        tools:paddingBottom="@dimen/activity_vertical_margin"
-        tools:paddingLeft="@dimen/activity_horizontal_margin"
-        tools:paddingRight="@dimen/activity_horizontal_margin"
-        tools:paddingTop="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:id="@+id/recycler"
-        android:layout_height="match_parent" />
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/article_summary_item"
+        android:layout_height="match_parent"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,4 +24,6 @@
             />
 
     </RelativeLayout>
+
+
 </FrameLayout>

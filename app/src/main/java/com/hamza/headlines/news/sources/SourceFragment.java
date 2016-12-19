@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.hamza.headlines.R;
@@ -26,6 +27,8 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
     SourcePresenter presenter;
     private ProgressDialog progressDialog;
     RecyclerView recyclerView;
+    private RelativeLayout progressIndicator;
+    View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +41,9 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_source, container, false);
+        view = inflater.inflate(R.layout.fragment_source, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        this.progressIndicator = (RelativeLayout) view.findViewById(R.id.progressIndicator);
         return view;
     }
 
@@ -51,19 +55,15 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
 
     @Override
     public void showProgressIndicator(boolean active) {
-
-        //// TODO: 12/16/2016 use custom progress indicator
-        if (progressDialog == null){
-            progressDialog = new ProgressDialog(context);
+        if (progressIndicator == null) {
+            this.progressIndicator = (RelativeLayout) view.findViewById(R.id.progressIndicator);
         }
 
-        if (active){
-            progressDialog.show();
+        if (active) {
+            progressIndicator.setVisibility(View.VISIBLE);
+        } else {
+            progressIndicator.setVisibility(View.GONE);
         }
-        else{
-            progressDialog.cancel();
-        }
-
     }
 
     @Override

@@ -1,10 +1,10 @@
-package com.hamza.headlines.news.headlines;
+package com.hamza.headlines.news.feeds;
 
 /**
  * Created by Hamza Fetuga on 12/16/2016.
  */
 
-public class Article {
+public class ArticleSummary {
 
     String author;
     String title;

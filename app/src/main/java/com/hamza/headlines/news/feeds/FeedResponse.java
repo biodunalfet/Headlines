@@ -1,4 +1,4 @@
-package com.hamza.headlines.news.headlines;
+package com.hamza.headlines.news.feeds;
 
 import java.util.List;
 
@@ -6,18 +6,18 @@ import java.util.List;
  * Created by Hamza Fetuga on 12/16/2016.
  */
 
-public class ArticleResponse {
+public class FeedResponse {
 
     String status;
     String source;
     String sortBy;
-    List<Article> articles;
+    List<ArticleSummary> articles;
 
     public String getStatus() {
         return status;
     }
 
-    public List<Article> getArticles() {
+    public List<ArticleSummary> getArticleSummaries() {
         return articles;
     }
 }
