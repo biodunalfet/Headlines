@@ -1,4 +1,4 @@
-package com.hamza.headlines.news.feedSort;
+package com.hamza.headlines.news.feedSelect;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,7 +32,7 @@ public class NewsPagerAdapter extends FragmentStatePagerAdapter {
         FeedFragment fragment = new FeedFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SORT_BY_KEY, sortBys[position]);
-        bundle.putString(Constants.SOURCE_KEY, FeedSortFragment.sourceKey);
+        bundle.putString(Constants.SOURCE_KEY, FeedSelectFragment.sourceKey);
         fragment.setArguments(bundle);
         return fragment;
     }

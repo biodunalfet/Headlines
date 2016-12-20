@@ -1,4 +1,4 @@
-package com.hamza.headlines.news.feedSort;
+package com.hamza.headlines.news.feedSelect;
 
 
 import android.app.ProgressDialog;
@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import com.hamza.headlines.util.Constants;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FeedSortFragment extends Fragment{
+public class FeedSelectFragment extends Fragment{
 
     Context context;
     private ProgressDialog progressDialog;
