@@ -49,7 +49,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         holder.article_author_tv.setText(articleSummary.getAuthor());
 
         try{
-            Picasso.with(context).load(articleSummary.getUrlToImage()).into(holder.article_backg_iv);
+            Picasso.with(context).load(articleSummary.getUrlToImage()).fit().into(holder.article_backg_iv);
         }
         catch (Exception e){
             e.printStackTrace();
