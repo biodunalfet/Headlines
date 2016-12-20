@@ -57,7 +57,6 @@ public class FeedSelectFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //presenter.getArticles(sortBy, sourceKey);
     }
 
 

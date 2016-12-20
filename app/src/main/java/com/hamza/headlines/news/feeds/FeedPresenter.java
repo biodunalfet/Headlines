@@ -50,4 +50,8 @@ public class FeedPresenter implements FeedContract.UserActionsListener{
     public void openTab(ArticleSummary articleSummary) {
         mView.showArticle(articleSummary);
     }
+
+    public void unSubscribe(){
+        if (subscriptions != null){ subscriptions.unsubscribe();}
+    }
 }

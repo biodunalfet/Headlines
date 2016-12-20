@@ -98,6 +98,11 @@ public class FeedFragment extends Fragment implements FeedContract.View {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.unSubscribe();
+    }
 
     @Override
     public void showArticle(ArticleSummary articleSummary) {
