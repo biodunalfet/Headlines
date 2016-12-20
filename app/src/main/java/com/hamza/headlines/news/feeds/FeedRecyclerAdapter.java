@@ -1,6 +1,7 @@
 package com.hamza.headlines.news.feeds;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hamza.headlines.R;
+import com.hamza.headlines.news.NewsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,10 +23,15 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
 
     private Context context;
     private List<ArticleSummary> articleSummaryList;
+    private FeedPresenter presenter;
 
     public FeedRecyclerAdapter(Context context, List<ArticleSummary> articleSummaryList){
         this.context = context;
         this.articleSummaryList = articleSummaryList;
+    }
+
+    public void setPresenter(FeedPresenter presenter){
+        this.presenter = presenter;
     }
 
     @Override
@@ -60,12 +67,22 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         TextView article_title_tv;
         TextView article_author_tv;
         ImageView article_backg_iv;
+        CardView root_cv;
 
         public ViewHolder(View itemView) {
             super(itemView);
             article_author_tv = (TextView) itemView.findViewById(R.id.article_author_textView);
             article_backg_iv = (ImageView) itemView.findViewById(R.id.article_imageView);
             article_title_tv = (TextView) itemView.findViewById(R.id.article_title_textView);
+            root_cv = (CardView) itemView.findViewById(R.id.root);
+
+            root_cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ArticleSummary articleSummary = articleSummaryList.get(getAdapterPosition());
+                    presenter.openTab(articleSummary);
+                }
+            });
         }
     }
 }

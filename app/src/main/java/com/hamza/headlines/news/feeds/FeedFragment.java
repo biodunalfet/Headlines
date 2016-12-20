@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.hamza.headlines.R;
+import com.hamza.headlines.news.NewsActivity;
 import com.hamza.headlines.util.Constants;
 
 import java.util.List;
@@ -87,6 +88,7 @@ public class FeedFragment extends Fragment implements FeedContract.View {
 
         if (response != null){
             FeedRecyclerAdapter adapter = new FeedRecyclerAdapter(context, response.getArticleSummaries());
+            adapter.setPresenter(presenter);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         }
@@ -99,7 +101,9 @@ public class FeedFragment extends Fragment implements FeedContract.View {
 
     @Override
     public void showArticle(ArticleSummary articleSummary) {
-
+        ((NewsActivity)context).openCustomTab(articleSummary);
     }
+
+
 
 }

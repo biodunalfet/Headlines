@@ -17,12 +17,14 @@ public interface FeedContract {
         void showArticles(FeedResponse response);
 
         void showArticle(ArticleSummary articleSummary);
+
     }
 
     interface UserActionsListener {
 
         void getArticles(String sortBy, String sourceKey);
 
+        void openTab(ArticleSummary articleSummary);
     }
 
 }

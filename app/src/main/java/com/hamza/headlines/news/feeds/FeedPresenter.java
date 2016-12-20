@@ -45,4 +45,9 @@ public class FeedPresenter implements FeedContract.UserActionsListener{
         }, subscriptions, sourceKey, sortBy);
 
     }
+
+    @Override
+    public void openTab(ArticleSummary articleSummary) {
+        mView.showArticle(articleSummary);
+    }
 }

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hamza.headlines.R;
 import com.hamza.headlines.news.NewsActivity;
-import com.hamza.headlines.news.feedSort.FeedSortFragment;
+import com.hamza.headlines.news.feedSelect.FeedSelectFragment;
 import com.hamza.headlines.util.Constants;
 import com.hamza.headlines.util.Helpers;
 import com.squareup.picasso.Picasso;
@@ -81,7 +81,7 @@ public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.ViewHold
                     if (((NewsActivity)context).findViewById(R.id.content_news) != null) {
 
                         Source src = sources.get(getAdapterPosition());
-                        FeedSortFragment fragment = new FeedSortFragment();
+                        FeedSelectFragment fragment = new FeedSelectFragment();
                         Bundle bundle = new Bundle();
                         bundle.putString(Constants.SOURCE_KEY, src.getId());
                         bundle.putStringArray(Constants.SORT_BY_KEYS_LIST, src.getSortBysAvailable());

@@ -20,7 +20,8 @@
         <activity
             android:name=".news.NewsActivity"
             android:label="@string/title_activity_news"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".news.webview.WebViewActivity"></activity>
     </application>
 
 </manifest>
