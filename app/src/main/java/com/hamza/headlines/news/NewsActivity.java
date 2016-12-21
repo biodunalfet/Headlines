@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.hamza.headlines.R;
 import com.hamza.headlines.news.feeds.ArticleSummary;
 import com.hamza.headlines.news.sources.SourceFragment;
+import com.hamza.headlines.util.Constants;
 import com.hamza.headlines.util.CustomTabActivityHelper;
 import com.hamza.headlines.util.ImageUtils;
 import com.hamza.headlines.util.WebViewFallback;
@@ -136,7 +137,7 @@ public class NewsActivity extends AppCompatActivity {
         actionIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s %s %s",
                 article.getTitle(),
                 article.getUrl(),
-                "via @headlinesApp"));
+                "via " + Constants.TWITTER_HANDLE));
         return PendingIntent.getActivity(getApplicationContext(), 0, actionIntent, 0);
     }
 
