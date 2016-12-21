@@ -51,6 +51,8 @@ public class FeedPresenter implements FeedContract.UserActionsListener{
         mView.showArticle(articleSummary);
     }
 
+
+
     public void unSubscribe(){
         if (subscriptions != null){ subscriptions.unsubscribe();}
     }

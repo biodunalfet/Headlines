@@ -13,4 +13,5 @@ public class Constants {
 
     public static final String ARTICLE_URL = "headlines article url";
 
+    public static final String SOURCE_NAME = "source name";
 }

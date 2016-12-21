@@ -16,6 +16,8 @@ public interface SourcesContract {
 
         void showError(String message);
 
+        void showTitle(String title);
+
     }
 
     interface UserActionsListener {
@@ -23,6 +25,8 @@ public interface SourcesContract {
         void getSources();
 
         void clearSubscription();
+
+        void setTitle(String message);
 
     }
 

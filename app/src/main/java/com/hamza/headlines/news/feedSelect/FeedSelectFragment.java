@@ -24,6 +24,7 @@ public class FeedSelectFragment extends Fragment{
     private ProgressDialog progressDialog;
     static String sourceKey;
     String[] sortBys;
+    static String sourceName;
     private android.support.v4.view.ViewPager pager;
 
     @Override
@@ -32,13 +33,13 @@ public class FeedSelectFragment extends Fragment{
         context = getActivity();
         Bundle bundle = getArguments();
         sourceKey = bundle.getString(Constants.SOURCE_KEY);
+        sourceName = bundle.getString(Constants.SOURCE_NAME);
         sortBys = bundle.getStringArray(Constants.SORT_BY_KEYS_LIST);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_article, container, false);
         this.pager = (ViewPager) v.findViewById(R.id.pager);
 
@@ -55,9 +56,25 @@ public class FeedSelectFragment extends Fragment{
 
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
+        try{
+            ((NewsActivity) context).setActionBarTitle("Newsfeed");
+            //((NewsActivity) context).setActionBarSubtitle(sourceName);
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        try{
+            ((NewsActivity) context).setActionBarTitle("Sources");
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -69,4 +69,9 @@ public class SourcePresenter implements SourcesContract.UserActionsListener {
         subscriptions.unsubscribe();
     }
 
+    @Override
+    public void setTitle(String message) {
+        mView.showTitle(message);
+    }
+
 }

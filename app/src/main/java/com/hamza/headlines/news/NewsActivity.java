@@ -52,6 +52,25 @@ public class NewsActivity extends AppCompatActivity {
                    fragment, null).commit();
         }
 
+
+    }
+
+    public void setActionBarTitle(String title){
+        try{
+            getSupportActionBar().setTitle(title);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setActionBarSubtitle(String actionBarSubtitle) {
+        try{
+            getSupportActionBar().setSubtitle(actionBarSubtitle);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setupCustomTabsHelper(){
@@ -150,4 +169,6 @@ public class NewsActivity extends AppCompatActivity {
             //Toast.makeText(NewsActivity.this, "Service disconnected", Toast.LENGTH_SHORT).show();
         }
     };
+
+
 }

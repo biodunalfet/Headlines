@@ -83,6 +83,7 @@ public class SourcesAdapter extends RecyclerView.Adapter<SourcesAdapter.ViewHold
                         Source src = sources.get(getAdapterPosition());
                         FeedSelectFragment fragment = new FeedSelectFragment();
                         Bundle bundle = new Bundle();
+                        bundle.putString(Constants.SOURCE_NAME, src.getName());
                         bundle.putString(Constants.SOURCE_KEY, src.getId());
                         bundle.putStringArray(Constants.SORT_BY_KEYS_LIST, src.getSortBysAvailable());
                         fragment.setArguments(bundle);

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.hamza.headlines.R;
+import com.hamza.headlines.news.NewsActivity;
 
 import java.util.List;
 
@@ -43,6 +45,8 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_source, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setDrawingCacheEnabled(true);
         this.progressIndicator = (RelativeLayout) view.findViewById(R.id.progressIndicator);
         return view;
     }
@@ -51,6 +55,17 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.getSources();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setTitle("Sources");
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
@@ -90,6 +105,17 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
         }
 
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showTitle(String title) {
+
+        try {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override

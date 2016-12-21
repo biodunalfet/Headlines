@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hamza.headlines.R;
 import com.hamza.headlines.news.NewsActivity;
+import com.hamza.headlines.util.Helpers;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,10 +47,13 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         ArticleSummary articleSummary = articleSummaryList.get(position);
 
         holder.article_title_tv.setText(articleSummary.getTitle());
-        holder.article_author_tv.setText(articleSummary.getAuthor());
+        holder.article_author_tv.setText(Helpers.FormatAuthorName(articleSummary.getAuthor()));
 
         try{
-            Picasso.with(context).load(articleSummary.getUrlToImage()).fit().into(holder.article_backg_iv);
+            Picasso.with(context)
+                    .load(articleSummary.getUrlToImage())
+                    .placeholder(R.color.colorPlaceHolder)
+                    .into(holder.article_backg_iv);
         }
         catch (Exception e){
             e.printStackTrace();

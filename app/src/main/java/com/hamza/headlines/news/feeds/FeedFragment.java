@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,7 +53,13 @@ public class FeedFragment extends Fragment implements FeedContract.View {
         v = inflater.inflate(R.layout.fragment_feed, container, false);
         this.progressIndicator = (RelativeLayout) v.findViewById(R.id.progressIndicator);
         this.recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -90,6 +97,8 @@ public class FeedFragment extends Fragment implements FeedContract.View {
             FeedRecyclerAdapter adapter = new FeedRecyclerAdapter(context, response.getArticleSummaries());
             adapter.setPresenter(presenter);
             recyclerView.setAdapter(adapter);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         }
         else{

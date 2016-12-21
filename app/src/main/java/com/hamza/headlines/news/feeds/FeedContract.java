@@ -25,6 +25,7 @@ public interface FeedContract {
         void getArticles(String sortBy, String sourceKey);
 
         void openTab(ArticleSummary articleSummary);
+
     }
 
 }
