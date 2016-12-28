@@ -1,6 +1,8 @@
 package com.hamza.headlines.news.sources;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -19,6 +22,8 @@ import com.hamza.headlines.R;
 import com.hamza.headlines.news.NewsActivity;
 
 import java.util.List;
+
+import static android.view.View.GONE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,8 +81,20 @@ public class SourceFragment extends Fragment implements SourcesContract.View {
 
         if (active) {
             progressIndicator.setVisibility(View.VISIBLE);
+
         } else {
-            progressIndicator.setVisibility(View.GONE);
+
+            progressIndicator.animate()
+                    .alpha(0.f)
+                    .setDuration(200)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            progressIndicator.setVisibility(GONE);
+                        }
+                    })
+                    .start();
         }
     }
 

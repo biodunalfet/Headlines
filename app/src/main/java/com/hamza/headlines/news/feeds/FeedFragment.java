@@ -1,6 +1,8 @@
 package com.hamza.headlines.news.feeds;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ import com.hamza.headlines.news.NewsActivity;
 import com.hamza.headlines.util.Constants;
 
 import java.util.List;
+
+import static android.view.View.GONE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +81,17 @@ public class FeedFragment extends Fragment implements FeedContract.View {
         if (active) {
             progressIndicator.setVisibility(View.VISIBLE);
         } else {
-            progressIndicator.setVisibility(View.GONE);
+            progressIndicator.animate()
+                    .alpha(0.f)
+                    .setDuration(200)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            progressIndicator.setVisibility(GONE);
+                        }
+                    })
+                    .start();
         }
     }
 
